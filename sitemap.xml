@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.kinghiee.cn/2022/07/30/create-http2/</loc>
+    
+    <lastmod>2022-09-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.kinghiee.cn/2022/09/04/facade/</loc>
     
     <lastmod>2022-09-04</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://www.kinghiee.cn/2022/07/01/hello/</loc>
-    
-    <lastmod>2022-07-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.kinghiee.cn/2022/07/30/create-http2/</loc>
     
     <lastmod>2022-07-31</lastmod>
     
@@ -65,7 +65,14 @@
 
   
   <url>
-    <loc>https://www.kinghiee.cn/tags/link/</loc>
+    <loc>https://www.kinghiee.cn/tags/%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2022-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kinghiee.cn/tags/http2%E5%90%AF%E5%8A%A8/</loc>
     <lastmod>2022-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -78,10 +85,24 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://www.kinghiee.cn/tags/link/</loc>
+    <lastmod>2022-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
-    <loc>https://www.kinghiee.cn/categories/html/</loc>
+    <loc>https://www.kinghiee.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2022-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kinghiee.cn/categories/http/</loc>
     <lastmod>2022-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -89,6 +110,13 @@
   
   <url>
     <loc>https://www.kinghiee.cn/categories/css/</loc>
+    <lastmod>2022-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kinghiee.cn/categories/html/</loc>
     <lastmod>2022-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
