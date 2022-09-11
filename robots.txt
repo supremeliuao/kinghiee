@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.kinghiee.cn/baidusitemap.xml
+Sitemap: https://www.kinghiee.cn/sitemap.xml
