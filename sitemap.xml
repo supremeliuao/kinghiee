@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.kinghiee.cn/2023/02/18/vue2-ssr-test/</loc>
+    
+    <lastmod>2023-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.kinghiee.cn/2023/01/01/bridge/</loc>
     
     <lastmod>2023-01-01</lastmod>
@@ -76,7 +85,7 @@
 
   <url>
     <loc>https://www.kinghiee.cn/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -84,42 +93,42 @@
   
   <url>
     <loc>https://www.kinghiee.cn/tags/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/tags/http2%E5%90%AF%E5%8A%A8/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/tags/%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/tags/link/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/tags/%E5%A4%87%E5%BF%98%E5%BD%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/tags/css/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -128,28 +137,28 @@
   
   <url>
     <loc>https://www.kinghiee.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/categories/http/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/categories/html/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.kinghiee.cn/categories/css/</loc>
-    <lastmod>2023-01-01</lastmod>
+    <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
