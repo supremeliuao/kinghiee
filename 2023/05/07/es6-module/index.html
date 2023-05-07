@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ES6 module | Kinghiee</title><meta name="keywords" content="es6,模块加载,module"><meta name="author" content="kinghiee"><meta name="copyright" content="kinghiee"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、export 命令export 命令用于规定模块的对外导出接口。 一个独立文件就是一个模块。如果从外部想要获取文件内部所有变量，文件内没有使用export关键字输出该变量(提供对外接口)，那么外部就无法获取文件内部变量。 (一)、文件内部不提供对外接口(没有使用export关键字导出)noExport.mjs 文件内 123456&#x2F;&#x2F; noExport.mjslet demo &#x3D; &amp;#x27;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 module">
+<meta property="og:url" content="https://www.kinghiee.cn/2023/05/07/es6-module/">
+<meta property="og:site_name" content="Kinghiee">
+<meta property="og:description" content="一、export 命令export 命令用于规定模块的对外导出接口。 一个独立文件就是一个模块。如果从外部想要获取文件内部所有变量，文件内没有使用export关键字输出该变量(提供对外接口)，那么外部就无法获取文件内部变量。 (一)、文件内部不提供对外接口(没有使用export关键字导出)noExport.mjs 文件内 123456&#x2F;&#x2F; noExport.mjslet demo &#x3D; &amp;#x27;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kinghiee.cn/img/post/esModule/cover.webp">
+<meta property="article:published_time" content="2023-05-07T01:01:14.000Z">
+<meta property="article:modified_time" content="2023-05-07T10:04:05.369Z">
+<meta property="article:author" content="kinghiee">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kinghiee.cn/img/post/esModule/cover.webp"><link rel="shortcut icon" href="/img/page/avatar.jpeg"><link rel="canonical" href="https://www.kinghiee.cn/2023/05/07/es6-module/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-tAQ8BhSPxw"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"作者: kinghiee","link":"链接: ","source":"来源: Kinghiee","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ES6 module',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-07 18:04:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/page/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/post/esModule/bg.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Kinghiee</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ES6 module</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-07T01:01:14.000Z" title="发表于 2023-05-07 09:01:14">2023-05-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-07T10:04:05.369Z" title="更新于 2023-05-07 18:04:05">2023-05-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ES6/">ES6</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ES6 module"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、export-命令"><a href="#一、export-命令" class="headerlink" title="一、export 命令"></a>一、export 命令</h2><p>export 命令用于规定模块的对外导出接口。</p>
+<p>一个独立文件就是一个模块。如果从外部想要获取文件内部所有变量，文件内没有使用export关键字输出该变量(提供对外接口)，那么外部就无法获取文件内部变量。</p>
+<h3 id="一-、文件内部不提供对外接口-没有使用export关键字导出"><a href="#一-、文件内部不提供对外接口-没有使用export关键字导出" class="headerlink" title="(一)、文件内部不提供对外接口(没有使用export关键字导出)"></a>(一)、文件内部不提供对外接口(没有使用export关键字导出)</h3><p>noExport.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// noExport.mjs</span></span><br><span class="line"><span class="keyword">let</span> demo = <span class="string">&#x27;kinghiee&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logInfo func&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> noExport <span class="keyword">from</span> <span class="string">&#x27;./noExport.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(noExport);</span><br></pre></td></tr></table></figure>
+
+<p>在编辑器中会发现，会提示<br><img src="/../img/post/esModule/no-export-result.jpg" alt="提示不是模块"><br>如果要是不顾提示坚持执行会得到如下error</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> noExport <span class="keyword">from</span> <span class="string">&#x27;./noExport.mjs&#x27;</span>;</span><br><span class="line">       ^^^^^^^^</span><br><span class="line"><span class="title class_">SyntaxError</span>: <span class="title class_">The</span> requested <span class="variable language_">module</span> <span class="string">&#x27;./noExport.mjs&#x27;</span> does not provide an <span class="keyword">export</span> named <span class="string">&#x27;default&#x27;</span></span><br><span class="line">    at <span class="title class_">ModuleJob</span>.<span class="property">_instantiate</span> (<span class="attr">node</span>:internal/modules/esm/<span class="attr">module_job</span>:<span class="number">123</span>:<span class="number">21</span>)</span><br><span class="line">    at <span class="keyword">async</span> <span class="title class_">ModuleJob</span>.<span class="property">run</span> (<span class="attr">node</span>:internal/modules/esm/<span class="attr">module_job</span>:<span class="number">189</span>:<span class="number">5</span>)</span><br><span class="line">    at <span class="keyword">async</span> <span class="title class_">Promise</span>.<span class="property">all</span> (index <span class="number">0</span>)</span><br><span class="line">    at <span class="keyword">async</span> <span class="title class_">ESMLoader</span>.<span class="property">import</span> (<span class="attr">node</span>:internal/modules/esm/<span class="attr">loader</span>:<span class="number">530</span>:<span class="number">24</span>)</span><br><span class="line">    at <span class="keyword">async</span> loadESM (<span class="attr">node</span>:internal/process/<span class="attr">esm_loader</span>:<span class="number">91</span>:<span class="number">5</span>)</span><br><span class="line">    at <span class="keyword">async</span> handleMainPromise (<span class="attr">node</span>:internal/modules/<span class="attr">run_main</span>:<span class="number">65</span>:<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注: import是导入命令后面会有介绍</strong></p>
+<h3 id="二-、文件内部使用export"><a href="#二-、文件内部使用export" class="headerlink" title="(二)、文件内部使用export"></a>(二)、文件内部使用export</h3><p>export.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.mjs</span></span><br><span class="line"><span class="keyword">let</span> demo = <span class="string">&#x27;kinghiee&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logInfo func&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoKinghiee</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DemoKinghiee 类初始化&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; demo, logInfo, <span class="title class_">DemoKinghiee</span> &#125;; <span class="comment">// 推荐这种写法，因为它可以在尾部看清楚都有哪些内容被导出(关注点集中)</span></span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; demo, logInfo, <span class="title class_">DemoKinghiee</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./export.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(demo, logInfo, <span class="title class_">DemoKinghiee</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注: 因为export.mjs 文件内各个变量都是分个导出的，所以在使用时也是一个一个导入。如果想要import xxx from ‘.&#x2F;export.mjs’;导入，那么后续会介绍export default导出，来提供这种导入能力</strong></p>
+<h3 id="三-、as-关键字变量重命名"><a href="#三-、as-关键字变量重命名" class="headerlink" title="(三)、as 关键字变量重命名"></a>(三)、as 关键字变量重命名</h3><p>如果觉得在export.mjs 文件内使用export导出变量原本的名字实在是逊b了，那么可以使用as关键字进行变量重命名</p>
+<p>export.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> demo = <span class="string">&#x27;kinghiee&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logInfo func&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoKinghiee</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DemoKinghiee 类初始化&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  demo <span class="keyword">as</span> kingDemo,</span><br><span class="line">  logInfo <span class="keyword">as</span> kingLogInfo,</span><br><span class="line">  <span class="title class_">DemoKinghiee</span> <span class="keyword">as</span> kingDemoKinghiee</span><br><span class="line">&#125;; <span class="comment">// 推荐这种写法，因为它可以在尾部看清楚都有哪些内容被导出(关注点集中)</span></span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; kingDemo, kingLogInfo, kingDemoKinghiee &#125; <span class="keyword">from</span> <span class="string">&#x27;./export.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(kingDemo, kingLogInfo, kingDemoKinghiee);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：导入时的名字应该和导出时的名字一致</strong></p>
+<h3 id="四-、export-default"><a href="#四-、export-default" class="headerlink" title="(四)、export default"></a>(四)、export default</h3><p>从上面的例子可以看出，使用import命令时用户需要知道所要加载的变量名或函数名，否则就没有办法加载。换句话说就是得全面知道要加载的文件中都有哪些内容是被export导出的。这无形之中就要求使用者去了解模块内容，这样才能找到要用的东西。但是很多用户肯定想要快速上手，未必会愿意全面了解模块都export什么。为了让用户快速使用，这时可以使用export default为模块指定默认输出。</p>
+<p>exportDefault.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// exportDefault.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">log</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;log&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">&#x27;./exportDefault.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test);</span><br></pre></td></tr></table></figure>
+
+<p>可以看出当使用export default导出时，在使用的import后面不出现大括号(‘{}’),而且导入时也可以对原函数进行重命名，这时就不需要知道原模块输出的函数名。同时需要注意的是导出匿名函数也是可以的</p>
+<p>exportDefault.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// exportDefault.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123; <span class="comment">// 导出匿名函数</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;anonymous&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：export default命令用于指定模块的默认输出，可知一个模块最多只能有一个默认输出，因此export default命令只能用一次，这也是import导入相应模块后面没有大括号的原因</strong></p>
+<h4 id="1-在一个文件中不能使用多次export-default"><a href="#1-在一个文件中不能使用多次export-default" class="headerlink" title="1. 在一个文件中不能使用多次export default"></a>1. 在一个文件中不能使用多次export default</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;anonymous&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">log</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;log&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/post/esModule/times-export-default.jpg" alt="一个文件内多次使用export default"></p>
+<h4 id="nature"> 2. export default 的本质</h4>
+
+<p>export default 本质上是输出一个叫作default的变量或方法，然后系统允许我们为它取任意名字。</p>
+<p>exportDefault.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// exportDefault.mjs</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">log</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;log&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; log <span class="keyword">as</span> <span class="keyword">default</span> &#125;; <span class="comment">// export default导出</span></span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">&#x27;./exportDefault.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/post/esModule/default-essentially.jpg" alt="默认导出本质"></p>
+<p>因为export default本质是输出一个叫作default的变量或方法(这是后面不能跟变量声明语句的原因)，那么下面的写法就成为了可能</p>
+<p><strong>写法1</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a;</span><br></pre></td></tr></table></figure>
+
+<p><strong>写法2</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">40</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面两种写法可以这么理解：export default是将该命令后面的值赋给default变量之后再默认，所以上面的写法没有问题，但是下面的写法是有问题的。</p>
+<p><strong>错误写法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">let</span> a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五-、export导出需要注意的几个点"><a href="#五-、export导出需要注意的几个点" class="headerlink" title="(五)、export导出需要注意的几个点"></a>(五)、export导出需要注意的几个点</h3><h4 id="1-export-命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系"><a href="#1-export-命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系" class="headerlink" title="1. export 命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系"></a>1. export 命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系</h4><p><strong>正确写法1</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> m = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>正确写法2</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; m &#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>正确写法3</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; m <span class="keyword">as</span> one &#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>错误写法1</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>错误写法2</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> m;</span><br></pre></td></tr></table></figure>
+
+<p>解释： 错误写法中使用export导出的直接就是数值1，所以没有对应关系。然而比如正确写法1中建立了一一对应关系。效果如下</p>
+<p><img src="/../img/post/esModule/right-write.jpg" alt="正确写法"></p>
+<p>里面的具体实现细节可以参考<a target="_blank" rel="noopener" href="https://tc39.es/ecma262/#sec-modules">ECMAScript官方文档</a></p>
+<h4 id="2-export输出的接口与对应额值是动态绑定关系"><a href="#2-export输出的接口与对应额值是动态绑定关系" class="headerlink" title="2. export输出的接口与对应额值是动态绑定关系"></a>2. export输出的接口与对应额值是动态绑定关系</h4><p>可以通过接口取到模块内部实时的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> foo = <span class="string">&#x27;baz&#x27;</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/post/esModule/dynmaic-value.jpg" alt="动态值"><br>可以看到最后值发生了变化。</p>
+<h4 id="3-export出现的位置"><a href="#3-export出现的位置" class="headerlink" title="3. export出现的位置"></a>3. export出现的位置</h4><p>export可以出现在模块中的任何位置，只能处于模块顶层。</p>
+<h2 id="二、import-命令"><a href="#二、import-命令" class="headerlink" title="二、import 命令"></a>二、import 命令</h2><h3 id="一-、import-加载export导出的变量或方法"><a href="#一-、import-加载export导出的变量或方法" class="headerlink" title="(一)、import 加载export导出的变量或方法"></a>(一)、import 加载export导出的变量或方法</h3><p>export.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.mjs</span></span><br><span class="line"><span class="keyword">let</span> demo = <span class="string">&#x27;kinghiee&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logInfo func&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoKinghiee</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DemoKinghiee 类初始化&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; demo, logInfo, <span class="title class_">DemoKinghiee</span> &#125;; <span class="comment">// 推荐这种写法，因为它可以在尾部看清楚都有哪些内容被导出(关注点集中)</span></span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; demo, logInfo, <span class="title class_">DemoKinghiee</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./export.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(demo, logInfo, <span class="title class_">DemoKinghiee</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在export.mjs 文件内用export导出的内容，可以使用import 后面加大括号的形式一一导入，其中要注意的是大括号中的变量名必须与被导入模块对外接口的名称相同。如果说你想要重命名可以使用as来进行重命名操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; demo <span class="keyword">as</span> demo1, logInfo <span class="keyword">as</span> logInfo1, <span class="title class_">DemoKinghiee</span> <span class="keyword">as</span> <span class="title class_">DemoKinghiee1</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./export.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(demo1, logInfo1, <span class="title class_">DemoKinghiee1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-、import-整体加载"><a href="#二-、import-整体加载" class="headerlink" title="(二)、import 整体加载"></a>(二)、import 整体加载</h3><p>如果觉得使用import一一对应export导出值太麻烦的话，可以使用*来指定一个对象，所有输出值都加载在这个对象上。</p>
+<p>export.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// export.mjs</span></span><br><span class="line"><span class="keyword">let</span> demo = <span class="string">&#x27;kinghiee&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logInfo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;logInfo func&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoKinghiee</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DemoKinghiee 类初始化&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; demo, logInfo, <span class="title class_">DemoKinghiee</span> &#125;; <span class="comment">// 推荐这种写法，因为它可以在尾部看清楚都有哪些内容被导出(关注点集中)</span></span><br></pre></td></tr></table></figure>
+
+<p>import.mjs 文件内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> all <span class="keyword">from</span> <span class="string">&#x27;./export.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(all);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/post/esModule/all-module.jpg" alt="全部加载"></p>
+<p>export defalut 导出也能别被加载吗？(可以的)</p>
+<p>export.mjs 文件内中加入export defalut</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/post/esModule/export-default-all-import.jpg" alt="export default 全部加载"><br>这也正好说明了<a href="#nature">export default的本质</a></p>
+<h2 id="三、ES6-module严格模式和静态化"><a href="#三、ES6-module严格模式和静态化" class="headerlink" title="三、ES6 module严格模式和静态化"></a>三、ES6 module严格模式和静态化</h2><p>ES6模块自动采用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode">严格模式</a>，不管有没有在模块头部加上”use strict”。</p>
+<p>ES6设计思想是尽量静态化，使得编译时就能确定模块的依赖关系。这也使tree shaking成为可能</p>
+<h2 id="四、export与import的复合写法"><a href="#四、export与import的复合写法" class="headerlink" title="四、export与import的复合写法"></a>四、export与import的复合写法</h2><p>如果在一个模块中先输入后输出同一个模块，那么import和export语句可以写在一起。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例如</span></span><br><span class="line"><span class="keyword">export</span> &#123; a, b &#125; <span class="keyword">from</span> <span class="string">&#x27;somethingModule&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例如</span></span><br><span class="line"><span class="keyword">import</span> &#123; a, b &#125; <span class="keyword">from</span> <span class="string">&#x27;somethingModule&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> &#123; a, b &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例如</span></span><br><span class="line"><span class="keyword">export</span> &#123; c <span class="keyword">as</span> aliasC &#125; <span class="keyword">from</span> <span class="string">&#x27;somethingModule&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例如</span></span><br><span class="line"><span class="keyword">export</span> &#123; d <span class="keyword">as</span> <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;somethingModule&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例如</span></span><br><span class="line"><span class="keyword">export</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> d &#125; <span class="keyword">from</span> <span class="string">&#x27;somethingModule&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、import-动态导入"><a href="#五、import-动态导入" class="headerlink" title="五、import() 动态导入"></a>五、import() 动态导入</h2><p>标准用法的 import 导入的模块是静态的，会使所有被导入的模块，在加载时就被编译（无法做到按需编译，降低首页加载速度）。有些场景中，你可能希望根据条件导入模块或者按需导入模块，这时你可以使用动态导入代替静态导入。下面的是你可能会需要动态导入的场景：</p>
+<ul>
+<li>当静态导入的模块很明显的降低了代码的加载速度且被使用的可能性很低，或者并不需要马上使用它。</li>
+<li>当静态导入的模块很明显的占用了大量系统内存且被使用的可能性很低。</li>
+<li>当被导入的模块，在加载时并不存在，需要异步获取。</li>
+<li>当导入模块的说明符，需要动态构建。（静态导入只能使用静态说明符）</li>
+<li>当被导入的模块有副作用（这里说的副作用，可以理解为模块中会直接运行的代码），这些副作用只有在触发了某些条件才被需要时。（原则上来说，模块不能有副作用，但是很多时候，你无法控制你所依赖的模块的内容）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">import</span>(<span class="string">&#x27;/modules/my-module.js&#x27;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params"><span class="variable language_">module</span></span>) =&gt;</span> &#123;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable language_">module</span> = <span class="keyword">await</span> <span class="title function_">import</span>(<span class="string">&#x27;/modules/my-module.js&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>参考：</strong><br><strong>1.《ES6标准入门》 第3版</strong><br><strong>2. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import">MDN</a></strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/supremeliuao">kinghiee</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.kinghiee.cn/2023/05/07/es6-module/">https://www.kinghiee.cn/2023/05/07/es6-module/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.kinghiee.cn" target="_blank">Kinghiee</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ES6/">ES6</a></div><div class="post_share"><div class="social-share" data-image="/img/post/esModule/cover.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/05/03/webpack-loader/"><img class="next-cover" src="/img/post/webpackLoader/bg.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">webpack loader</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/page/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">kinghiee</div><div class="author-info__description">kinghiee的前端博客，记录个人技术、学习发展、爱好等</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/supremeliuao"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81export-%E5%91%BD%E4%BB%A4"><span class="toc-text">一、export 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E3%80%81%E6%96%87%E4%BB%B6%E5%86%85%E9%83%A8%E4%B8%8D%E6%8F%90%E4%BE%9B%E5%AF%B9%E5%A4%96%E6%8E%A5%E5%8F%A3-%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8export%E5%85%B3%E9%94%AE%E5%AD%97%E5%AF%BC%E5%87%BA"><span class="toc-text">(一)、文件内部不提供对外接口(没有使用export关键字导出)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E3%80%81%E6%96%87%E4%BB%B6%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8export"><span class="toc-text">(二)、文件内部使用export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E3%80%81as-%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">(三)、as 关键字变量重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E3%80%81export-default"><span class="toc-text">(四)、export default</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%A4%9A%E6%AC%A1export-default"><span class="toc-text">1. 在一个文件中不能使用多次export default</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nature"><span class="toc-text"> 2. export default 的本质</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94-%E3%80%81export%E5%AF%BC%E5%87%BA%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%87%A0%E4%B8%AA%E7%82%B9"><span class="toc-text">(五)、export导出需要注意的几个点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-export-%E5%91%BD%E4%BB%A4%E8%A7%84%E5%AE%9A%E7%9A%84%E6%98%AF%E5%AF%B9%E5%A4%96%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%8C%E5%BF%85%E9%A1%BB%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%86%85%E9%83%A8%E7%9A%84%E5%8F%98%E9%87%8F%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-text">1. export 命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-export%E8%BE%93%E5%87%BA%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AF%B9%E5%BA%94%E9%A2%9D%E5%80%BC%E6%98%AF%E5%8A%A8%E6%80%81%E7%BB%91%E5%AE%9A%E5%85%B3%E7%B3%BB"><span class="toc-text">2. export输出的接口与对应额值是动态绑定关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-export%E5%87%BA%E7%8E%B0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">3. export出现的位置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81import-%E5%91%BD%E4%BB%A4"><span class="toc-text">二、import 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E3%80%81import-%E5%8A%A0%E8%BD%BDexport%E5%AF%BC%E5%87%BA%E7%9A%84%E5%8F%98%E9%87%8F%E6%88%96%E6%96%B9%E6%B3%95"><span class="toc-text">(一)、import 加载export导出的变量或方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E3%80%81import-%E6%95%B4%E4%BD%93%E5%8A%A0%E8%BD%BD"><span class="toc-text">(二)、import 整体加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81ES6-module%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8C%96"><span class="toc-text">三、ES6 module严格模式和静态化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81export%E4%B8%8Eimport%E7%9A%84%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95"><span class="toc-text">四、export与import的复合写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81import-%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5"><span class="toc-text">五、import() 动态导入</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/es6-module/" title="ES6 module"><img src="/img/post/esModule/cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES6 module"/></a><div class="content"><a class="title" href="/2023/05/07/es6-module/" title="ES6 module">ES6 module</a><time datetime="2023-05-07T01:01:14.000Z" title="发表于 2023-05-07 09:01:14">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/03/webpack-loader/" title="webpack loader"><img src="/img/post/webpackLoader/bg.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webpack loader"/></a><div class="content"><a class="title" href="/2023/05/03/webpack-loader/" title="webpack loader">webpack loader</a><time datetime="2023-05-03T07:07:42.000Z" title="发表于 2023-05-03 15:07:42">2023-05-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/18/vue2-ssr-test/" title="手动创建 vue2 ssr 开发环境"><img src="/img/post/vue2SsrTest/cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="手动创建 vue2 ssr 开发环境"/></a><div class="content"><a class="title" href="/2023/02/18/vue2-ssr-test/" title="手动创建 vue2 ssr 开发环境">手动创建 vue2 ssr 开发环境</a><time datetime="2023-02-18T07:40:40.000Z" title="发表于 2023-02-18 15:40:40">2023-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/01/bridge/" title="Javascript 桥接设计模式"><img src="/img/post/bridge/cover.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Javascript 桥接设计模式"/></a><div class="content"><a class="title" href="/2023/01/01/bridge/" title="Javascript 桥接设计模式">Javascript 桥接设计模式</a><time datetime="2023-01-01T03:54:16.000Z" title="发表于 2023-01-01 11:54:16">2023-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/memo/" title="Javascript 备忘录设计模式"><img src="/img/post/memo/bg.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Javascript 备忘录设计模式"/></a><div class="content"><a class="title" href="/2022/09/11/memo/" title="Javascript 备忘录设计模式">Javascript 备忘录设计模式</a><time datetime="2022-09-11T01:32:16.000Z" title="发表于 2022-09-11 09:32:16">2022-09-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By kinghiee</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
