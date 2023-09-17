@@ -1,5 +1,5 @@
+https://www.kinghiee.cn/2023/09/17/san-util-inherits/
 https://www.kinghiee.cn/2023/05/07/es6-module/
-https://www.kinghiee.cn/2023/05/07/san-util-inherits/
 https://www.kinghiee.cn/2023/05/03/webpack-loader/
 https://www.kinghiee.cn/2023/02/18/vue2-ssr-test/
 https://www.kinghiee.cn/2023/01/01/bridge/
